@@ -78,12 +78,12 @@ class _frontState extends State<front> {
                       child: ClipRRect(
                           borderRadius: BorderRadius.circular(200),
                           child: image != null
-                              ? Image(
+                              ? Image(image: NetworkImage("$image"))
+                              : Image(
                                   image: NetworkImage(
                                     "https://cdn.pixabay.com/photo/2017/02/23/13/05/avatar-2092113_960_720.png",
                                   ),
-                                )
-                              : Image(image: NetworkImage("$image"))),
+                                )),
                     ),
                   ),
                   fixheight,
