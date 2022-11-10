@@ -64,6 +64,8 @@ class authcontroler extends GetxController {
 
       UserCredential userCredential = await auth.signInWithEmailAndPassword(
           email: email!.trim(), password: password!);
+      ldb.setuserData(
+          userid: userCredential.user!.uid.toString(), email: email);
 
       Get.to(front());
     } on FirebaseAuthException catch (e) {
@@ -82,6 +84,7 @@ class authcontroler extends GetxController {
     try {
       CommonDialog.showDialog();
       await FirebaseAuth.instance.sendPasswordResetEmail(email: remail!.trim());
+
       Get.offAll(sign_in());
       CommonDialog.hideLoading();
     } on FirebaseAuthException catch (e) {

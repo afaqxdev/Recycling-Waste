@@ -159,7 +159,7 @@ class _frontState extends State<front> {
           Padding(
             padding: EdgeInsets.only(right: 10.w),
             child: Icon(
-              Icons.menu_outlined,
+              Icons.feedback_outlined,
               color: Colors.green,
             ),
           )

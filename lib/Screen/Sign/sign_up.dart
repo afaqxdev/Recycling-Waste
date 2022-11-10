@@ -26,7 +26,7 @@ class _signupState extends State<signup> {
   Future upload() async {
     final path = 'file/${_image.toString()}';
     final file = File(_image!.path);
-    final ref = FirebaseStorage.instance.ref()..putFile(file);
+    final ref = FirebaseStorage.instance.ref().child(path).putFile(file);
   }
 
   Future getImage() async {

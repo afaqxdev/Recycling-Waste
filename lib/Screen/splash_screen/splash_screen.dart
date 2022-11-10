@@ -26,8 +26,6 @@ String? User1;
 String? User2;
 
 class _SplahscreenState extends State<Splahscreen> {
-  localdatabase usersavedata = localdatabase();
-
   void didChangeDependencies() async {
     SharedPreferences _shper = await SharedPreferences.getInstance();
     _shper.containsKey('userid')
@@ -36,9 +34,9 @@ class _SplahscreenState extends State<Splahscreen> {
             print("user id 2 $User2");
             Get.offAll(front());
           })
-        : Timer(Duration(seconds: 10), () => Get.offAll(() => sign_in()));
+        : Timer(Duration(seconds: 10), () => Get.offAll(start_page()));
     User1 = await _shper.getString('userid').toString();
-    User2 = await usersavedata.getuserData();
+    User2 = await ldb.getuserData();
     super.didChangeDependencies();
   }
 
