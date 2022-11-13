@@ -51,8 +51,12 @@ class _transactionState extends State<transaction> {
               fixheight,
               custom_textfield(
                 hintext: "Search",
-                maincolor: Colors.green,
-                passicon: Icon(Icons.search),
+                maincolor: appcolor.themewhite,
+                passicon: Icon(
+                  Icons.search,
+                  color: appcolor.themewhite,
+                ),
+                color: appcolor.themewhite,
               ),
               Expanded(
                   child: ListView.builder(
@@ -67,25 +71,30 @@ class _transactionState extends State<transaction> {
                             ));
                           },
                           child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: SizedBox(
-                              height: 70.h,
-                              child: Card(
-                                color: appcolor.themewhite.withOpacity(0.6),
-                                child: Center(
-                                  child: ListTile(
-                                    leading: Image.asset(
-                                      "${data.Image}",
-                                      scale: 3,
-                                    ),
-                                    title: Text(
-                                      "${data.Sub_name}",
-                                      style: TextStyle(
-                                          fontSize: 16.sp,
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                    trailing:
-                                        Icon(Icons.arrow_forward_outlined),
+                            padding: const EdgeInsets.all(13.0),
+                            child: Container(
+                              height: 50.h,
+                              decoration: BoxDecoration(
+                                  color: Colors.transparent,
+                                  borderRadius: BorderRadius.circular(12.r),
+                                  border:
+                                      Border.all(color: appcolor.themegreen)),
+                              child: Center(
+                                child: ListTile(
+                                  leading: Image.asset(
+                                    "${data.Image}",
+                                    scale: 7,
+                                  ),
+                                  title: Text(
+                                    "${data.Sub_name}",
+                                    style: TextStyle(
+                                        fontSize: 16.sp,
+                                        color: appcolor.themewhite,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                  trailing: Icon(
+                                    Icons.arrow_forward_outlined,
+                                    color: appcolor.themewhite,
                                   ),
                                 ),
                               ),
