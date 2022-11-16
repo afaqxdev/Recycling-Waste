@@ -33,7 +33,7 @@ localdatabase userdatasave = localdatabase();
 class _frontState extends State<front> {
   int money = mtotal + pltotal + ototal + patotal + gtotal;
   String name = "";
-  String image = "";
+  String? image;
   void getdata() async {
     final firestore = FirebaseAuth.instance.currentUser;
     final user = await FirebaseFirestore.instance
@@ -42,8 +42,8 @@ class _frontState extends State<front> {
         .get();
     print("this is the result $name");
     setState(() {
-      name = user.data()!["firstname"];
       image = user.data()!["image"];
+      name = user.data()!["firstname"];
     });
   }
 
@@ -77,7 +77,7 @@ class _frontState extends State<front> {
                       ),
                       child: ClipRRect(
                           borderRadius: BorderRadius.circular(200),
-                          child: Image != null
+                          child: image != null
                               ? Image(
                                   image: NetworkImage(
                                     "https://cdn.pixabay.com/photo/2017/02/23/13/05/avatar-2092113_960_720.png",
