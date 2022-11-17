@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:green/Screen/Update/UpdateProfile.dart';
 
 import '../../Feature/helper/color.dart';
 import '../../Feature/helper/common_var.dart';
@@ -56,11 +57,16 @@ class DrawerProfile extends StatelessWidget {
                       ),
                       fixheight,
                       fixwidth,
-                      Container(
-                        alignment: Alignment.centerRight,
-                        child: Icon(
-                          Icons.edit_note_outlined,
-                          color: appcolor.themegreen,
+                      InkWell(
+                        onTap: () {
+                          Get.to(UpdateProfile());
+                        },
+                        child: Container(
+                          alignment: Alignment.centerRight,
+                          child: Icon(
+                            Icons.edit_note_outlined,
+                            color: appcolor.themegreen,
+                          ),
                         ),
                       )
                     ],
