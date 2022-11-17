@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:green/Feature/Api/Email_Api.dart';
-import 'package:green/Screen/Menu/Menu.dart';
+import 'package:green/Screen/Recycle_Category/Menu.dart';
 import 'package:green/Screen/Price_list/price_list.dart';
 import 'package:green/Screen/Reward/reward.dart';
-import 'package:green/Screen/api/NewsApiScreen.dart';
+import 'package:green/Screen/Api_Screen/NewsApiScreen.dart';
 
 import 'package:green/Screen/transaction/transaction.dart';
 

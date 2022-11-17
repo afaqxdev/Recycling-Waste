@@ -1,24 +1,22 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:green/Feature/common/custom-button.dart';
-
 import 'package:green/Feature/helper/color.dart';
 import 'package:green/Feature/helper/common_var.dart';
-import 'package:green/Feature/helper/custom_text.dart';
 import 'package:green/Feature/localdb.dart';
+import 'package:green/Screen/Drawer_Profile/Prfoile.dart';
 import 'package:green/Screen/Glass/Glass.dart';
 import 'package:green/Screen/Main_Page/conatiner.dart';
-import 'package:green/Screen/Main_Page/model.dart';
 import 'package:green/Screen/Organic/organic.dart';
 import 'package:green/Screen/Paper/paper.dart';
-import 'package:green/Screen/Sign/sing_in.dart';
 import 'package:green/Screen/metel/matel.dart';
-import 'package:provider/provider.dart';
-
+import 'package:ndialog/ndialog.dart';
+import '../../Feature/Api/Email_Api.dart';
+import '../../Feature/common/custom_textfield.dart';
 import '../Plastic/plastic.dart';
 
 class front extends StatefulWidget {
@@ -33,7 +31,7 @@ localdatabase userdatasave = localdatabase();
 class _frontState extends State<front> {
   int money = mtotal + pltotal + ototal + patotal + gtotal;
   String name = "";
-  String? image;
+  String image = '';
   void getdata() async {
     final firestore = FirebaseAuth.instance.currentUser;
     final user = await FirebaseFirestore.instance
@@ -47,6 +45,16 @@ class _frontState extends State<front> {
     });
   }
 
+  TextEditingController fname = TextEditingController();
+  TextEditingController femail = TextEditingController();
+  TextEditingController fmessage = TextEditingController();
+
+  void clearText() {
+    fname.clear();
+    femail.clear();
+    fmessage.clear();
+  }
+
   void initState() {
     getdata();
     super.initState();
@@ -56,113 +64,81 @@ class _frontState extends State<front> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: Drawer(
-        backgroundColor: appcolor.themewhite,
-        child: ListView(children: [
-          Container(
-            height: 150.h,
-            margin: EdgeInsets.only(bottom: 50.h),
-            child: DrawerHeader(
-              decoration: BoxDecoration(color: appcolor.themecolor),
-              child: Column(
-                children: [
-                  CircleAvatar(
-                    radius: 40.r,
-                    child: Container(
-                      width: 200,
-                      height: 200,
-                      decoration: BoxDecoration(
-                        color: appcolor.themecolor,
-                        borderRadius: BorderRadius.circular(100),
-                      ),
-                      child: ClipRRect(
-                          borderRadius: BorderRadius.circular(200),
-                          child: image != null
-                              ? Image(
-                                  image: NetworkImage(
-                                    "https://cdn.pixabay.com/photo/2017/02/23/13/05/avatar-2092113_960_720.png",
-                                  ),
-                                )
-                              : Image(image: NetworkImage("$image"))),
-                    ),
+      drawer: DrawerProfile(
+          IMG: image != null
+              ? Image(image: NetworkImage("$image"))
+              : Image(
+                  image: NetworkImage(
+                    "https://cdn.pixabay.com/photo/2017/02/23/13/05/avatar-2092113_960_720.png",
                   ),
-                  fixheight,
-                  custom_Text(
-                    name: name,
-                    size: 20.sp,
-                  ),
-                ],
-              ),
-            ),
-          ),
-          fixheightui,
-          fixheightui,
-          ListTile(
-            iconColor: appcolor.themecolor,
-            tileColor: appcolor.themegreen.withOpacity(0.5),
-            leading: Icon(Icons.feedback_outlined),
-            title: custom_Text(
-              name: "Feed",
-              size: 16.sp,
-              color: appcolor.themecolor,
-            ),
-          ),
-          fixheight,
-          ClipRRect(
-            borderRadius: BorderRadius.circular(12.r),
-            child: ListTile(
-              iconColor: appcolor.themecolor,
-              tileColor: appcolor.themegreen.withOpacity(0.5),
-              leading: Icon(Icons.account_balance),
-              title: custom_Text(
-                name: "Account",
-                size: 16.sp,
-                color: appcolor.themecolor,
-              ),
-            ),
-          ),
-          fixheight,
-          ListTile(
-            iconColor: appcolor.themecolor,
-            tileColor: appcolor.themegreen.withOpacity(0.5),
-            leading: Icon(Icons.notification_add_outlined),
-            title: custom_Text(
-              name: "Notification",
-              size: 16.sp,
-              color: appcolor.themecolor,
-            ),
-          ),
-          fixheight,
-          InkWell(
-            onTap: () {
-              FirebaseAuth.instance.signOut();
-              Get.offAll(sign_in());
-            },
-            child: ListTile(
-              iconColor: appcolor.themecolor,
-              tileColor: appcolor.themegreen.withOpacity(0.5),
-              leading: Icon(Icons.logout_outlined),
-              title: custom_Text(
-                name: "Logout",
-                size: 16.sp,
-                color: appcolor.themecolor,
-              ),
-            ),
-          ),
-        ]),
-      ),
+                ),
+          name: name),
       backgroundColor: appcolor.themecolor,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
         actions: [
           Padding(
-            padding: EdgeInsets.only(right: 10.w),
-            child: Icon(
-              Icons.feedback_outlined,
-              color: Colors.green,
-            ),
-          )
+              padding: EdgeInsets.only(right: 10.w),
+              child: InkWell(
+                  onTap: () {
+                    Get.defaultDialog(
+                        title: ("FeedBack"),
+                        content: Container(
+                          child: Column(children: [
+                            fixheight,
+                            RatingBar.builder(
+                                minRating: 1,
+                                itemBuilder: (context, _) => Icon(
+                                      Icons.star,
+                                      color: Colors.yellow,
+                                    ),
+                                onRatingUpdate: (rating) {
+                                  setState(() {
+                                    rating = rating;
+                                  });
+                                }),
+                            fixheight,
+                            SizedBox(
+                              height: 50.h,
+                              child: custom_textfield(
+                                  hintext: "Message",
+                                  controller: fmessage,
+                                  maincolor: Colors.black),
+                            ),
+                            fixheight,
+                            custom_button(
+                                buttonname: "Send",
+                                color: Colors.green,
+                                onPressed: () async {
+                                  ProgressDialog progressDialog =
+                                      ProgressDialog(context,
+                                          title: Text("Sending Email"),
+                                          message: Text("Please wait"));
+                                  progressDialog.show();
+                                  Api email_send = Api();
+                                  dynamic response = await email_send.feedback(
+                                    fname.text,
+                                    femail.text,
+                                    fmessage.text,
+                                  );
+                                  progressDialog.dismiss();
+                                  Get.back();
+                                  Get.snackbar("Email Sent", "Successfully",
+                                      snackPosition: SnackPosition.BOTTOM);
+                                  clearText();
+                                }),
+                          ]),
+                        ));
+                  },
+                  child: Container(
+                    padding: EdgeInsets.only(right: 20.w),
+                    child: Icon(
+                      Icons.feedback,
+                      color: Colors.yellow,
+                      size: 30.sp,
+                    ),
+                  )))
         ],
       ),
       body: Padding(

@@ -43,6 +43,12 @@ class custom_textfield extends StatelessWidget {
           focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(13.r),
               borderSide: BorderSide(color: Colors.grey)),
+          errorBorder: OutlineInputBorder(
+            borderSide: BorderSide(
+              color: Color.fromARGB(255, 7, 211, 41),
+            ),
+            borderRadius: BorderRadius.circular(13.0),
+          ),
           hintText: hintext,
           hintStyle: TextStyle(
             fontSize: 16.sp,

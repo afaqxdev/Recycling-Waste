@@ -8,7 +8,7 @@ import 'package:green/Feature/common/custom_textfield.dart';
 import 'package:green/Feature/helper/color.dart';
 import 'package:green/Feature/helper/common_var.dart';
 
-import 'package:green/Screen/Menu/model.dart';
+import 'package:green/Screen/Recycle_Category/model.dart';
 import 'package:ndialog/ndialog.dart';
 
 class home extends StatefulWidget {
@@ -19,16 +19,6 @@ class home extends StatefulWidget {
 }
 
 class _homeState extends State<home> {
-  TextEditingController fname = TextEditingController();
-  TextEditingController femail = TextEditingController();
-  TextEditingController fmessage = TextEditingController();
-
-  void clearText() {
-    fname.clear();
-    femail.clear();
-    fmessage.clear();
-  }
-
   Appcolor appcolor = Appcolor();
   @override
   Widget build(BuildContext context) {
@@ -59,67 +49,6 @@ class _homeState extends State<home> {
           ),
           backgroundColor: Colors.transparent,
           elevation: 0,
-          actions: [
-            InkWell(
-              onTap: () {
-                Get.defaultDialog(
-                    title: ("FeedBack"),
-                    content: Container(
-                      child: Column(children: [
-                        fixheight,
-                        RatingBar.builder(
-                            minRating: 1,
-                            itemBuilder: (context, _) => Icon(
-                                  Icons.star,
-                                  color: Colors.yellow,
-                                ),
-                            onRatingUpdate: (rating) {
-                              setState(() {
-                                rating = rating;
-                              });
-                            }),
-                        fixheight,
-                        SizedBox(
-                          height: 50.h,
-                          child: custom_textfield(
-                              hintext: "Message",
-                              controller: fmessage,
-                              maincolor: Colors.black),
-                        ),
-                        fixheight,
-                        custom_button(
-                            buttonname: "Send",
-                            color: Colors.green,
-                            onPressed: () async {
-                              ProgressDialog progressDialog = ProgressDialog(
-                                  context,
-                                  title: Text("Sending Email"),
-                                  message: Text("Please wait"));
-                              progressDialog.show();
-                              Api email_send = Api();
-                              dynamic response = await email_send.feedback(
-                                fname.text,
-                                femail.text,
-                                fmessage.text,
-                              );
-                              progressDialog.dismiss();
-                              Get.back();
-                              Get.snackbar("Email Sent", "Successfully",
-                                  snackPosition: SnackPosition.BOTTOM);
-                              clearText();
-                            }),
-                      ]),
-                    ));
-              },
-              child: Container(
-                padding: EdgeInsets.only(right: 20.w),
-                child: Icon(
-                  Icons.feedback_outlined,
-                  color: appcolor.themegreen,
-                ),
-              ),
-            )
-          ],
         ),
 
         // resizeToAvoidBottomInset: false,

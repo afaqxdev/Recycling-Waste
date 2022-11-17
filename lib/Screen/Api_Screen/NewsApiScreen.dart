@@ -4,8 +4,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:green/Feature/helper/custom_text.dart';
 import 'package:green/Feature/helper/color.dart';
-import 'package:green/Screen/api/api_controller.dart';
-import 'package:green/Screen/api/news_detail.dart';
+import 'package:green/Screen/Api_Screen/api_controller.dart';
+import 'package:green/Screen/Api_Screen/news_detail.dart';
 
 class News extends StatelessWidget {
   News({super.key});
