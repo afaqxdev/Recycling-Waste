@@ -135,7 +135,7 @@ class _frontState extends State<front> {
                     padding: EdgeInsets.only(right: 20.w),
                     child: Icon(
                       Icons.feedback,
-                      color: Colors.yellow,
+                      color: appcolor.themegreen,
                       size: 30.sp,
                     ),
                   )))

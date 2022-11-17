@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -28,6 +30,23 @@ class reward extends StatefulWidget {
 class _rewardState extends State<reward> {
   String website = "www.facebook.com/This.Syco";
   int Point = 0 + pcoin + ocoin + mcoin + pacoin + gcoin;
+  String name = '';
+  void getdata() async {
+    final firestore = FirebaseAuth.instance.currentUser;
+    final user = await FirebaseFirestore.instance
+        .collection("App_User_credentials")
+        .doc(firestore!.uid)
+        .get();
+    print("this is the result $name");
+    setState(() {
+      name = user.data()!["firstname"];
+    });
+  }
+
+  void initState() {
+    getdata();
+    super.initState();
+  }
 
   Appcolor appcolor = Appcolor();
   @override
@@ -78,7 +97,7 @@ class _rewardState extends State<reward> {
                   child: Row(
                     children: [
                       custom_Text(
-                        name: "AFAQ Zahir",
+                        name: name != null ? name : "Mr/Mrs",
                         color: Colors.black,
                         size: 20.sp,
                         weight: FontWeight.bold,
