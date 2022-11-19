@@ -6,6 +6,7 @@ import 'package:green/Feature/helper/custom_text.dart';
 import 'package:green/Feature/helper/color.dart';
 import 'package:green/Screen/Api_Screen/api_controller.dart';
 import 'package:green/Screen/Api_Screen/news_detail.dart';
+import 'package:shimmer/shimmer.dart';
 
 class News extends StatelessWidget {
   News({super.key});
@@ -34,14 +35,42 @@ class News extends StatelessWidget {
         body: Padding(
           padding: EdgeInsets.all(8.0),
           child: FutureBuilder(
-            future: news_api.NewsApi(),
-            builder: (context, AsyncSnapshot snapshot) {
-              if (snapshot.hasData) {
+              future: news_api.NewsApi(),
+              builder: (context, AsyncSnapshot snapshot) {
+                if (!snapshot.hasData) {
+                  return ListView.builder(
+                    itemCount: 14,
+                    itemBuilder: (context, index) {
+                      return Shimmer.fromColors(
+                        baseColor: Colors.grey.shade700,
+                        highlightColor: Colors.grey.shade100,
+                        child: Column(children: [
+                          ListTile(
+                            leading: Container(
+                              color: Colors.white,
+                              height: 50.h,
+                              width: 50.w,
+                            ),
+                            title: Container(
+                              color: Colors.white,
+                              height: 10.h,
+                              width: 80.w,
+                            ),
+                            subtitle: Container(
+                              height: 10.h,
+                              width: 80.w,
+                              color: Colors.white,
+                            ),
+                          )
+                        ]),
+                      );
+                    },
+                  );
+                }
                 return ListView.builder(
                   itemCount: snapshot.data['articles'].length,
                   itemBuilder: (BuildContext context, int index) {
                     var data = snapshot.data["articles"][index];
-
                     return InkWell(
                         onTap: () {
                           Navigator.of(context)
@@ -86,12 +115,7 @@ class News extends StatelessWidget {
                         ));
                   },
                 );
-              }
-              return LinearProgressIndicator(
-                color: Colors.amber,
-              );
-            },
-          ),
+              }),
         ),
       ),
     );

@@ -3,15 +3,16 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:green/Feature/firebase/Getdetail.dart';
+import 'package:green/Feature/firebase/authDetail.dart';
 import 'package:green/Feature/helper/color.dart';
 import 'package:green/Feature/helper/common_var.dart';
 import 'package:green/Feature/helper/custom_text.dart';
+import 'package:shimmer/shimmer.dart';
 
 import '../../Feature/Common_Widget/custom-button.dart';
 
 class UpdateProfile extends StatefulWidget {
-  const UpdateProfile({super.key});
+  UpdateProfile({super.key});
 
   @override
   State<UpdateProfile> createState() => _UpdateProfileState();
@@ -19,7 +20,6 @@ class UpdateProfile extends StatefulWidget {
 
 class _UpdateProfileState extends State<UpdateProfile> {
   Appcolor appcolor = Appcolor();
-  getdatafire let = getdatafire();
 
   String name = "";
   String email = '';
@@ -38,10 +38,19 @@ class _UpdateProfileState extends State<UpdateProfile> {
     });
   }
 
-  @override
   void initState() {
     getdata();
     super.initState();
+  }
+
+  TextEditingController Nameupdate = TextEditingController();
+
+  updatename() {
+    controller.Update("firstname", Nameupdate.text, () {
+      setState(() {
+        name = Nameupdate.text;
+      });
+    });
   }
 
   @override
@@ -51,7 +60,7 @@ class _UpdateProfileState extends State<UpdateProfile> {
       body: SingleChildScrollView(
         child: Column(children: [
           Container(
-            padding: EdgeInsets.only(top: 30.h),
+            padding: EdgeInsets.only(top: 60.h),
             height: 250.h,
             width: double.infinity,
             color: appcolor.themegreen,
@@ -61,16 +70,13 @@ class _UpdateProfileState extends State<UpdateProfile> {
                 radius: 50.r,
                 child: ClipRRect(
                     borderRadius: BorderRadius.circular(200.r),
-                    child: image != null
-                        ? Image.network(image, fit: BoxFit.cover)
-                        : Image.network(
-                            "https://cdn.pixabay.com/photo/2017/02/23/13/05/avatar-2092113_960_720.png")),
+                    child: Image.network(image, fit: BoxFit.cover)),
               ),
               fixheightui,
               custom_Text(
                 name: name,
-                size: 20.sp,
-              ),
+                size: 18.sp,
+              )
             ]),
           ),
           fixheightui,
@@ -83,7 +89,7 @@ class _UpdateProfileState extends State<UpdateProfile> {
             ),
             child: Center(
                 child: custom_Text(
-              name: email != null ? email : "gmai@.com",
+              name: email,
               size: 18.sp,
             )),
           ),
@@ -108,33 +114,35 @@ class _UpdateProfileState extends State<UpdateProfile> {
               buttonname: "Update",
               color: appcolor.themegreen,
               onPressed: () {
-                TextEditingController nameuodate = TextEditingController();
                 Get.defaultDialog(
-                    title: "Edited_trainers",
+                    title: "Edited_Profile",
+                    confirm: TextButton(
+                      onPressed: () {
+                        updatename();
+                      },
+                      child: custom_Text(
+                        name: "update",
+                        color: appcolor.themegreen,
+                        size: 17.sp,
+                      ),
+                    ),
+                    cancel: TextButton(
+                        onPressed: () {
+                          Get.back();
+                        },
+                        child: custom_Text(
+                          name: "cancel",
+                          size: 17.sp,
+                          color: appcolor.themegreen,
+                        )),
                     content: Column(children: [
                       Container(
                         margin: EdgeInsets.all(8.0.sp),
                         child: TextField(
                           decoration: InputDecoration(hintText: "name"),
-                          controller: nameuodate,
+                          controller: Nameupdate,
                         ),
                       ),
-                      SizedBox(
-                        height: 20,
-                        width: 100,
-                        child: custom_button(
-                          buttonname: "change",
-                          color: appcolor.themegreen,
-                          onPressed: () async {
-                            final firestore = FirebaseAuth.instance.currentUser;
-                            final user = await FirebaseFirestore.instance
-                                .collection("App_User_credentials")
-                                .doc(firestore!.uid)
-                                .update({"firstname": nameuodate.text});
-                            Get.back();
-                          },
-                        ),
-                      )
                     ]));
               }),
         ]),

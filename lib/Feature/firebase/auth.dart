@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
+import 'package:get/get_rx/src/rx_typedefs/rx_typedefs.dart';
 import 'package:green/Feature/localdb.dart';
 import 'package:green/Screen/Main_Page/front.dart';
 import 'package:green/Screen/Sign/sing_in.dart';
@@ -91,5 +92,15 @@ class authcontroler extends GetxController {
       CommonDialog.hideLoading();
       CommonDialog.showErrorDialog(description: "$e");
     }
+  }
+
+  Future<void> Update(
+      String DataName, dynamic controller, Callback? set) async {
+    final firestore = FirebaseAuth.instance.currentUser;
+    final user = await FirebaseFirestore.instance
+        .collection("App_User_credentials")
+        .doc(firestore!.uid)
+        .update({DataName: controller});
+    Get.back();
   }
 }
