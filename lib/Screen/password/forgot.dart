@@ -8,10 +8,11 @@ import 'package:green/Screen/Sign/sing_in.dart';
 import 'package:green/Screen/password/feedback.dart';
 import 'package:green/Screen/password/otp.dart';
 import 'package:green/Screen/password/phone.dart';
-import 'package:green/Feature/common/custom-button.dart';
-import 'package:green/Feature/common/custom_textfield.dart';
-import 'package:green/Feature/common/text_button.dart';
 import 'package:green/Feature/helper/common_var.dart';
+import '../../Feature/Common_Widget/Custom_Appbar.dart';
+import '../../Feature/Common_Widget/custom-button.dart';
+import '../../Feature/Common_Widget/custom_textfield.dart';
+import '../../Feature/Common_Widget/text_button.dart';
 
 class forgot extends StatefulWidget {
   const forgot({super.key});
@@ -31,28 +32,9 @@ class _forgotState extends State<forgot> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: InkWell(
-          onTap: () {
-            Get.back();
-          },
-          child: Container(
-            child: Icon(
-              Icons.arrow_back_ios_new_outlined,
-              color: Color.fromARGB(255, 255, 255, 255),
-            ),
-          ),
-        ),
-        title: Container(
-          margin: EdgeInsets.only(left: 35.w),
-          child: Text(
-            "Forgot Password ",
-            style: TextStyle(color: appcolor.themegreen, fontSize: 25.sp),
-          ),
-        ),
-        backgroundColor: appcolor.themecolor,
-        elevation: 0,
-      ),
+      appBar: PreferredSize(
+          preferredSize: Size.fromHeight(40.h),
+          child: CustomappBar(name: "Forgot Password")),
       backgroundColor: appcolor.themecolor,
       body: SingleChildScrollView(
         child: Padding(

@@ -5,8 +5,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:green/Feature/helper/color.dart';
 import 'package:green/Screen/Main_Page/front.dart';
 import 'package:green/Screen/Plastic/plastic.dart';
-import 'package:green/Feature/common/custom-button.dart';
 import 'package:green/Feature/helper/common_var.dart';
+import '../../Feature/Common_Widget/Custom_Appbar.dart';
+import '../../Feature/Common_Widget/custom-button.dart';
 
 class plastic_waste extends StatefulWidget {
   const plastic_waste({super.key});
@@ -28,25 +29,9 @@ class _plastic_wasteState extends State<plastic_waste> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: InkWell(
-          onTap: () {
-            Get.back();
-          },
-          child: Container(
-            child: Icon(Icons.arrow_back_ios, color: appcolor.themegreen),
-          ),
-        ),
-        title: Container(
-          margin: EdgeInsets.only(left: 80.w),
-          child: Text(
-            "Price",
-            style: TextStyle(color: appcolor.themegreen, fontSize: 25.sp),
-          ),
-        ),
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-      ),
+      appBar: PreferredSize(
+          preferredSize: Size.fromHeight(40.h),
+          child: CustomappBar(name: "Plastic")),
       backgroundColor: appcolor.themecolor,
       body: Stack(
         children: [

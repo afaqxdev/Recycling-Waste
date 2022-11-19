@@ -5,8 +5,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:green/Feature/helper/color.dart';
 import 'package:green/Screen/Glass/Glass.dart';
 import 'package:green/Screen/Main_Page/front.dart';
-import 'package:green/Feature/common/custom-button.dart';
 import 'package:green/Feature/helper/common_var.dart';
+import '../../Feature/Common_Widget/Custom_Appbar.dart';
+import '../../Feature/Common_Widget/custom-button.dart';
 
 class glass_price extends StatefulWidget {
   const glass_price({super.key});
@@ -28,28 +29,9 @@ class _glass_priceState extends State<glass_price> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: InkWell(
-          onTap: () {
-            Get.back();
-          },
-          child: Padding(
-            padding: EdgeInsets.only(left: 8.w),
-            child: Container(
-              child: Icon(Icons.arrow_back_ios, color: appcolor.themegreen),
-            ),
-          ),
-        ),
-        title: Container(
-          margin: EdgeInsets.only(left: 50.w),
-          child: Text(
-            "Glass Recycling",
-            style: TextStyle(color: appcolor.themegreen, fontSize: 25.sp),
-          ),
-        ),
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-      ),
+      appBar: PreferredSize(
+          preferredSize: Size.fromHeight(40.h),
+          child: CustomappBar(name: "Glass Waste")),
       backgroundColor: appcolor.themecolor,
       body: Stack(
         children: [

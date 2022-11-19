@@ -4,11 +4,11 @@ import 'package:get/get.dart';
 import 'package:green/Feature/helper/color.dart';
 import 'package:green/Screen/password/forgot.dart';
 import 'package:green/Screen/password/otp.dart';
-import 'package:green/Screen/Sign/sing_in.dart';
-import 'package:green/Feature/common/custom-button.dart';
-import 'package:green/Feature/common/custom_textfield.dart';
-import 'package:green/Feature/common/text_button.dart';
 import 'package:green/Feature/helper/common_var.dart';
+import '../../Feature/Common_Widget/Custom_Appbar.dart';
+import '../../Feature/Common_Widget/custom-button.dart';
+import '../../Feature/Common_Widget/custom_textfield.dart';
+import '../../Feature/Common_Widget/text_button.dart';
 
 class phone extends StatefulWidget {
   const phone({super.key});
@@ -22,17 +22,9 @@ class _phoneState extends State<phone> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Container(
-          margin: EdgeInsets.only(left: 40.w),
-          child: Text(
-            "Forgot Password",
-            style: TextStyle(color: appcolor.themegreen, fontSize: 25.sp),
-          ),
-        ),
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-      ),
+      appBar: PreferredSize(
+          preferredSize: Size.fromHeight(40.h),
+          child: CustomappBar(name: "Forgot Password")),
       backgroundColor: appcolor.themecolor,
       body: SingleChildScrollView(
         child: Padding(

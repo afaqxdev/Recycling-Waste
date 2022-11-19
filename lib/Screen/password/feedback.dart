@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:green/Feature/Api/example.dart';
-import '../../Feature/common/custom-button.dart';
-import '../../Feature/common/custom_textfield.dart';
+import '../../Feature/Common_Widget/custom-button.dart';
+import '../../Feature/Common_Widget/custom_textfield.dart';
 import '../../Feature/helper/common_var.dart';
 
 class email extends StatefulWidget {

@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-import 'package:green/Feature/common/custom_textfield.dart';
+import 'package:green/Feature/Common_Widget/custom_textfield.dart';
 import 'package:green/Feature/helper/color.dart';
 import 'package:green/Feature/helper/common_var.dart';
 import 'package:green/Screen/transaction/model.dart';
+
+import '../../Feature/Common_Widget/Custom_Appbar.dart';
 
 class bank_detail extends StatefulWidget {
   bank_detail({required this.image, required this.name, super.key});
@@ -47,28 +49,9 @@ class _bank_detailState extends State<bank_detail> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: InkWell(
-          onTap: () {
-            Get.back();
-          },
-          child: Container(
-            child: Icon(
-              Icons.arrow_back_ios_new_outlined,
-              color: appcolor.themegreen,
-            ),
-          ),
-        ),
-        title: Container(
-          margin: EdgeInsets.only(left: 70.w),
-          child: Text(
-            "Send Money",
-            style: TextStyle(color: appcolor.themegreen, fontSize: 20.sp),
-          ),
-        ),
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-      ),
+      appBar: PreferredSize(
+          preferredSize: Size.fromHeight(40.h),
+          child: CustomappBar(name: "Bank Detail")),
       backgroundColor: appcolor.themecolor,
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,

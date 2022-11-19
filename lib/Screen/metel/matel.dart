@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:green/Feature/helper/color.dart';
-import 'package:green/Screen/metel/matel,price.dart';
-import 'package:green/Feature/common/custom-button.dart';
 import 'package:green/Feature/helper/common_var.dart';
-import 'package:green/Feature/common/Price_managing.dart';
+import 'package:green/Screen/metel/Metal_Waste.dart';
+import '../../Feature/Common_Widget/Custom_Appbar.dart';
+import '../../Feature/Common_Widget/Price_managing.dart';
+import '../../Feature/Common_Widget/custom-button.dart';
 
 class metal extends StatefulWidget {
   const metal({super.key});
@@ -23,26 +24,9 @@ class _metalState extends State<metal> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: InkWell(
-          onTap: () {
-            Get.back();
-          },
-          child: Container(
-            child: Icon(Icons.arrow_back_ios_new_outlined,
-                color: appcolor.themegreen),
-          ),
-        ),
-        title: Container(
-          margin: EdgeInsets.only(left: 80.w),
-          child: Text(
-            "\t\tMetal",
-            style: TextStyle(color: appcolor.themegreen, fontSize: 25.sp),
-          ),
-        ),
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-      ),
+      appBar: PreferredSize(
+          preferredSize: Size.fromHeight(40.h),
+          child: CustomappBar(name: "Metal")),
       backgroundColor: appcolor.themecolor,
       body: Stack(
         children: [

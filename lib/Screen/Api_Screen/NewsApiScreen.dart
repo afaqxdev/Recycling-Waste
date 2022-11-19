@@ -24,12 +24,11 @@ class News extends StatelessWidget {
             },
           ),
           backgroundColor: Colors.transparent,
-          title: Center(
-            child: custom_Text(
-              name: "News",
-              color: appcolor.themegreen,
-            ),
+          title: custom_Text(
+            name: "News",
+            color: appcolor.themegreen,
           ),
+          centerTitle: true,
         ),
         backgroundColor: appcolor.themecolor,
         body: Padding(
@@ -58,27 +57,28 @@ class News extends StatelessWidget {
                           }));
                         },
                         child: Card(
-                          color: appcolor.themewhite,
+                          color: Colors.transparent,
                           child: Container(
                             height: 70.h,
                             decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(12.0)),
-                            child: SizedBox(
-                              child: ListTile(
-                                selectedColor: appcolor.themegreen,
-                                leading: Container(
-                                  margin: EdgeInsets.only(top: 10.h),
-                                  child: Image.network(
-                                    "${data["urlToImage"] == null ? "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyFZXxXWbEOZhU2k6hYB_PUFDOCQ8LBdbhLio9-N2iyA&s" : data["urlToImage"]}",
-                                  ),
+                              borderRadius: BorderRadius.circular(12.r),
+                              border: Border.all(color: appcolor.themegreen),
+                            ),
+                            child: ListTile(
+                              selectedColor: appcolor.themegreen,
+                              leading: Container(
+                                margin: EdgeInsets.only(top: 10.h),
+                                child: Image.network(
+                                  "${data["urlToImage"] == null ? "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyFZXxXWbEOZhU2k6hYB_PUFDOCQ8LBdbhLio9-N2iyA&s" : data["urlToImage"]}",
                                 ),
-                                title: Text(
-                                  "${data["title"]}",
-                                  style: TextStyle(
-                                    fontSize: 18.sp,
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.bold,
-                                  ),
+                              ),
+                              title: Text(
+                                "${data["title"]}",
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  fontSize: 18.sp,
+                                  color: appcolor.themegreen,
+                                  fontWeight: FontWeight.bold,
                                 ),
                               ),
                             ),

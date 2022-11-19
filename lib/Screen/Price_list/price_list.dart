@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:green/Feature/common/custom-button.dart';
+import 'package:green/Feature/Common_Widget/custom-button.dart';
 import 'package:green/Feature/helper/color.dart';
 import 'package:green/Feature/helper/common_var.dart';
+
+import '../../Feature/Common_Widget/Custom_Appbar.dart';
 
 class price_list extends StatefulWidget {
   const price_list({super.key});
@@ -19,28 +21,9 @@ class _price_listState extends State<price_list> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: InkWell(
-          onTap: () {
-            Get.back();
-          },
-          child: Container(
-            child: Icon(
-              Icons.arrow_back_ios_new_outlined,
-              color: appcolor.themegreen,
-            ),
-          ),
-        ),
-        title: Container(
-          margin: EdgeInsets.only(left: 70.w),
-          child: Text(
-            "Price List",
-            style: TextStyle(color: appcolor.themegreen, fontSize: 25.sp),
-          ),
-        ),
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-      ),
+      appBar: PreferredSize(
+          preferredSize: Size.fromHeight(40.h),
+          child: CustomappBar(name: "Price List")),
       backgroundColor: appcolor.themecolor,
       body: Stack(
         children: [

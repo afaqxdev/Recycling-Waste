@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:green/Screen/password/phone.dart';
-import 'package:green/Feature/common/custom-button.dart';
-import 'package:green/Feature/common/text_button.dart';
+import 'package:green/Feature/Common_Widget/custom-button.dart';
+import 'package:green/Feature/Common_Widget/text_button.dart';
 import 'package:green/Feature/helper/common_var.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
+import '../../Feature/Common_Widget/Custom_Appbar.dart';
 import '../../Feature/helper/color.dart';
 
 class otp extends StatefulWidget {
@@ -20,17 +21,9 @@ class _otpState extends State<otp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Container(
-          margin: EdgeInsets.only(left: 140.w),
-          child: Text(
-            "OTTP",
-            style: TextStyle(color: appcolor.themegreen, fontSize: 25.sp),
-          ),
-        ),
-        backgroundColor: appcolor.themecolor,
-        elevation: 0,
-      ),
+      appBar: PreferredSize(
+          preferredSize: Size.fromHeight(40.h),
+          child: CustomappBar(name: "Otp")),
       backgroundColor: appcolor.themecolor,
       body: SingleChildScrollView(
         child: Padding(

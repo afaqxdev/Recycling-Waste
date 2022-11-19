@@ -3,11 +3,12 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:green/Feature/common/custom-button.dart';
 import 'package:green/Feature/firebase/Getdetail.dart';
 import 'package:green/Feature/helper/color.dart';
 import 'package:green/Feature/helper/common_var.dart';
 import 'package:green/Feature/helper/custom_text.dart';
+
+import '../../Feature/Common_Widget/custom-button.dart';
 
 class UpdateProfile extends StatefulWidget {
   const UpdateProfile({super.key});

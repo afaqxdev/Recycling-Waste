@@ -1,11 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:green/Feature/common/dialog.dart';
 import 'package:green/Feature/localdb.dart';
 import 'package:green/Screen/Main_Page/front.dart';
 import 'package:green/Screen/Sign/sing_in.dart';
+
+import '../Common_Widget/dialog.dart';
 
 FirebaseAuth auth = FirebaseAuth.instance;
 var DB = FirebaseFirestore.instance;

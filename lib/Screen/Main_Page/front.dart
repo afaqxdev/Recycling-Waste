@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:green/Feature/common/custom-button.dart';
 import 'package:green/Feature/helper/color.dart';
 import 'package:green/Feature/helper/common_var.dart';
 import 'package:green/Feature/localdb.dart';
@@ -16,7 +15,8 @@ import 'package:green/Screen/Paper/paper.dart';
 import 'package:green/Screen/metel/matel.dart';
 import 'package:ndialog/ndialog.dart';
 import '../../Feature/Api/Email_Api.dart';
-import '../../Feature/common/custom_textfield.dart';
+import '../../Feature/Common_Widget/custom-button.dart';
+import '../../Feature/Common_Widget/custom_textfield.dart';
 import '../Plastic/plastic.dart';
 
 class front extends StatefulWidget {

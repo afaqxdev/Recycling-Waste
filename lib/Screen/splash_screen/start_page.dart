@@ -1,14 +1,12 @@
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:green/Feature/common/custom-button.dart';
 import 'package:green/Feature/helper/color.dart';
 import 'package:green/Feature/helper/common_var.dart';
 import 'package:green/Screen/Sign/sign_up.dart';
 import 'package:green/Screen/Sign/sing_in.dart';
+import '../../Feature/Common_Widget/custom-button.dart';
 
 class start_page extends StatefulWidget {
   const start_page({super.key});

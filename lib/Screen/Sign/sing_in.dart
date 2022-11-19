@@ -12,10 +12,12 @@ import 'package:green/Screen/Main_Page/model.dart';
 import 'package:green/Screen/Recycle_Category/Menu.dart';
 import 'package:green/Screen/password/forgot.dart';
 import 'package:green/Screen/Sign/sign_up.dart';
-import 'package:green/Feature/common/custom-button.dart';
-import 'package:green/Feature/common/custom_textfield.dart';
-import 'package:green/Feature/common/text_button.dart';
+import 'package:green/Feature/Common_Widget/custom-button.dart';
+import 'package:green/Feature/Common_Widget/custom_textfield.dart';
+import 'package:green/Feature/Common_Widget/text_button.dart';
 import 'package:green/Feature/helper/common_var.dart';
+
+import '../../Feature/Common_Widget/Custom_Appbar.dart';
 
 class sign_in extends StatefulWidget {
   const sign_in({super.key});
@@ -53,17 +55,9 @@ class _sign_inState extends State<sign_in> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Container(
-          margin: EdgeInsets.only(left: 130.w),
-          child: Text(
-            "SIGN IN ",
-            style: TextStyle(color: appcolor.themegreen, fontSize: 25.sp),
-          ),
-        ),
-        backgroundColor: appcolor.themecolor,
-        elevation: 0,
-      ),
+      appBar: PreferredSize(
+          preferredSize: Size.fromHeight(40.h),
+          child: CustomappBar(name: "SignIn")),
       // resizeToAvoidBottomInset: false,
       backgroundColor: appcolor.themecolor,
       body: SingleChildScrollView(

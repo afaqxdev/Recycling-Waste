@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:green/Feature/helper/color.dart';
 import 'package:green/Screen/Reward/custom_row.dart';
 
-import '../../Feature/common/custom-button.dart';
+import '../../Feature/Common_Widget/custom-button.dart';
 import '../../Feature/helper/custom_text.dart';
 import '../../Feature/helper/common_var.dart';
 

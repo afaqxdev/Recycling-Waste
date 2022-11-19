@@ -5,7 +5,7 @@ import 'package:green/Feature/helper/color.dart';
 import 'package:green/Screen/Glass/Glaas_waste.dart';
 import 'package:green/Screen/Organic/organic_price.dart';
 import 'package:green/Screen/Paper/paper_waste.dart';
-import 'package:green/Screen/metel/matel,price.dart';
+import 'package:green/Screen/metel/Metal_Waste.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 
 import '../../Feature/helper/common_var.dart';

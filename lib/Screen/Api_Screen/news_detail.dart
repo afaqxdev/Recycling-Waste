@@ -32,13 +32,11 @@ class NewsApiDetails extends StatelessWidget {
           color: appcolor.themegreen,
         ),
         backgroundColor: Colors.transparent,
-        title: Container(
-          margin: EdgeInsets.only(left: 95.w),
-          child: custom_Text(
-            name: "News",
-            color: appcolor.themegreen,
-          ),
+        title: custom_Text(
+          name: "News",
+          color: appcolor.themegreen,
         ),
+        centerTitle: true,
       ),
       backgroundColor: appcolor.themecolor,
       body: SingleChildScrollView(
