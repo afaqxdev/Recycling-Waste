@@ -42,28 +42,35 @@ class News extends StatelessWidget {
                     itemCount: 14,
                     itemBuilder: (context, index) {
                       return Shimmer.fromColors(
-                        baseColor: Colors.grey.shade700,
-                        highlightColor: Colors.grey.shade100,
-                        child: Column(children: [
-                          ListTile(
-                            leading: Container(
-                              color: Colors.white,
-                              height: 50.h,
-                              width: 50.w,
+                          baseColor: Colors.grey.shade700,
+                          highlightColor: Colors.grey.shade100,
+                          child: Card(
+                            color: Colors.transparent,
+                            child: Container(
+                              height: 70.h,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(12.r),
+                                border: Border.all(color: appcolor.themegreen),
+                              ),
+                              child: ListTile(
+                                leading: Container(
+                                  color: Colors.white,
+                                  height: 50.h,
+                                  width: 50.w,
+                                ),
+                                title: Container(
+                                  color: Colors.white,
+                                  height: 10.h,
+                                  width: 80.w,
+                                ),
+                                subtitle: Container(
+                                  height: 10.h,
+                                  width: 80.w,
+                                  color: Colors.white,
+                                ),
+                              ),
                             ),
-                            title: Container(
-                              color: Colors.white,
-                              height: 10.h,
-                              width: 80.w,
-                            ),
-                            subtitle: Container(
-                              height: 10.h,
-                              width: 80.w,
-                              color: Colors.white,
-                            ),
-                          )
-                        ]),
-                      );
+                          ));
                     },
                   );
                 }

@@ -23,36 +23,33 @@ class signup extends StatefulWidget {
 }
 
 class _signupState extends State<signup> {
-  File? _image;
-  Future upload() async {
-    final path = 'file/${_image.toString()}';
-    final file = File(_image!.path);
-    final ref = FirebaseStorage.instance.ref().child(path).putFile(file);
-  }
+  late String imageUrl = '';
+  uploadImage() async {
+    final _firebaseStorage = FirebaseStorage.instance;
+    final _imagePicker = ImagePicker();
+    PickedFile image;
+    //Check Permissions
 
-  Future getImage() async {
-    final image = await ImagePicker().pickImage(source: ImageSource.gallery);
-    if (image == null) return;
+    final images = await ImagePicker().pickImage(source: ImageSource.gallery);
+    var file = File(images!.path);
 
-    final ImageTemp = File(image.path);
-    setState(() {
-      this._image = ImageTemp;
-    });
-  }
-
-  Future getImageCam() async {
-    final image = await ImagePicker().pickImage(source: ImageSource.camera);
-    if (image == null) return;
-
-    final ImageTemp = File(image.path);
-    setState(() {
-      this._image = ImageTemp;
-    });
+    if (images != null) {
+      //Upload to Firebase
+      var snapshot =
+          await _firebaseStorage.ref().child('images/imageName').putFile(file);
+      var downloadUrl = await snapshot.ref.getDownloadURL();
+      setState(() {
+        imageUrl = downloadUrl;
+      });
+    } else {
+      print('No Image Path Received');
+    }
   }
 
   late String n, em, p;
+
   signuP() {
-    controller.signup(email: em, password: p, name: n);
+    controller.signup(email: em, password: p, name: n, images: imageUrl);
   }
 
   bool passwordVisible = false;
@@ -76,7 +73,7 @@ class _signupState extends State<signup> {
                 ),
                 InkWell(
                   onTap: () {
-                    getImage();
+                    uploadImage();
                   },
                   child: Row(
                     children: [
@@ -92,20 +89,18 @@ class _signupState extends State<signup> {
                         width: 150.w,
                       ),
                       Container(
-                        width: 50,
-                        height: 50,
-                        decoration: BoxDecoration(
-                          color: appcolor.themewhite,
-                          borderRadius: BorderRadius.circular(100),
-                        ),
-                        child: ClipRRect(
-                            borderRadius: BorderRadius.circular(200),
-                            child: _image != null
-                                ? Image.file(_image!.absolute)
-                                : Icon(
-                                    Icons.camera,
-                                  )),
-                      ),
+                          width: 50,
+                          height: 50,
+                          decoration: BoxDecoration(
+                            color: appcolor.themewhite,
+                            borderRadius: BorderRadius.circular(100),
+                          ),
+                          child: ClipRRect(
+                              borderRadius: BorderRadius.circular(200),
+                              child: (imageUrl != null)
+                                  ? Image.network(imageUrl)
+                                  : Image.network(
+                                      'https://i.imgur.com/sUFH1Aq.png'))),
                     ],
                   ),
                 ),
@@ -185,7 +180,6 @@ class _signupState extends State<signup> {
                         ScaffoldMessenger.of(context).showSnackBar(
                             const SnackBar(content: Text('Processing Data')));
                         await signuP();
-                        upload();
                       }
                     }),
                 fixheight,

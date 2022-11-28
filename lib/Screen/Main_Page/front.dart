@@ -65,13 +65,14 @@ class _frontState extends State<front> {
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: DrawerProfile(
-          IMG: image != null
-              ? Image(image: NetworkImage("$image"))
-              : Image(
-                  image: NetworkImage(
+          IMG: CircleAvatar(
+            radius: 40.r,
+            backgroundImage: (image != null)
+                ? NetworkImage("$image", scale: 2)
+                : NetworkImage(
                     "https://cdn.pixabay.com/photo/2017/02/23/13/05/avatar-2092113_960_720.png",
                   ),
-                ),
+          ),
           name: name),
       backgroundColor: appcolor.themecolor,
       appBar: AppBar(

@@ -13,7 +13,7 @@ var DB = FirebaseFirestore.instance;
 localdatabase ldb = localdatabase();
 
 class authcontroler extends GetxController {
-  Future<void> signup({name, email, password}) async {
+  Future<void> signup({name, email, password, images}) async {
     try {
       CommonDialog.showDialog();
 
@@ -30,6 +30,7 @@ class authcontroler extends GetxController {
           'firstname': name,
           'password': password,
           'email': email,
+          'image': images,
         });
         ldb.setuserData(
             userid: userCredential.user!.uid.toString(), email: email);

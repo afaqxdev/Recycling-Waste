@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -22,7 +23,7 @@ class _UpdateProfileState extends State<UpdateProfile> {
   Appcolor appcolor = Appcolor();
 
   String name = "";
-  String email = '';
+  String email = "";
   String image = "";
   void getdata() async {
     final firestore = FirebaseAuth.instance.currentUser;
@@ -43,12 +44,18 @@ class _UpdateProfileState extends State<UpdateProfile> {
     super.initState();
   }
 
-  TextEditingController Nameupdate = TextEditingController();
+  @override
+  void setState(VoidCallback fn) {
+    name = firstname;
+    super.setState(fn);
+  }
 
+  TextEditingController Nameupdate = TextEditingController();
+  String firstname = "";
   updatename() {
     controller.Update("firstname", Nameupdate.text, () {
       setState(() {
-        name = Nameupdate.text;
+        firstname = Nameupdate.text;
       });
     });
   }
@@ -67,10 +74,19 @@ class _UpdateProfileState extends State<UpdateProfile> {
             child:
                 Column(mainAxisAlignment: MainAxisAlignment.center, children: [
               CircleAvatar(
-                radius: 50.r,
-                child: ClipRRect(
-                    borderRadius: BorderRadius.circular(200.r),
-                    child: Image.network(image, fit: BoxFit.cover)),
+                radius: 70.r,
+                backgroundImage: (image != null)
+                    ? NetworkImage("$image", scale: 2)
+                    : NetworkImage(
+                        "https://cdn.pixabay.com/photo/2017/02/23/13/05/avatar-2092113_960_720.png",
+                      ),
+                // child: (image != null)
+                //     ? Image(image: NetworkImage("$image", scale: 20))
+                //     : Image(
+                //         image: NetworkImage(
+                //           "https://cdn.pixabay.com/photo/2017/02/23/13/05/avatar-2092113_960_720.png",
+                //         ),
+                //       ),
               ),
               fixheightui,
               custom_Text(
