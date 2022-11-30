@@ -13,6 +13,7 @@ import 'package:green/Screen/Main_Page/conatiner.dart';
 import 'package:green/Screen/Organic/organic.dart';
 import 'package:green/Screen/Paper/paper.dart';
 import 'package:green/Screen/metel/matel.dart';
+import 'package:green/main.dart';
 import 'package:ndialog/ndialog.dart';
 import '../../Feature/Api/Email_Api.dart';
 import '../../Feature/Common_Widget/custom-button.dart';
@@ -146,17 +147,13 @@ class _frontState extends State<front> {
         padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 15.h),
         child: Column(
           children: [
-            Stack(
-              children: [
-                Center(
-                  child: Container(
-                    height: 350.h,
-                    width: 300.w,
-                    decoration: BoxDecoration(
-                        color: appcolor.themegreen,
-                        borderRadius: BorderRadius.circular(25.r)),
-                  ),
-                ),
+            Container(
+              height: 350.h,
+              width: 300.w,
+              decoration: BoxDecoration(
+                  color: appcolor.themegreen,
+                  borderRadius: BorderRadius.circular(25.r)),
+              child: Column(children: [
                 InkWell(
                   onTap: () {
                     Get.defaultDialog(
@@ -169,93 +166,83 @@ class _frontState extends State<front> {
                         middleTextStyle: TextStyle(color: Colors.white),
                         radius: 30.r);
                   },
-                  child: Padding(
-                    padding: EdgeInsets.only(right: 15.w),
-                    child: Container(
-                      alignment: Alignment.topRight,
-                      child: Image.asset(
-                        "image/about.png",
-                        scale: 11,
-                      ),
+                  child: Container(
+                    alignment: Alignment.topRight,
+                    child: Image.asset(
+                      "image/about.png",
+                      scale: 11,
                     ),
                   ),
                 ),
+                Padding(
+                  padding: EdgeInsets.only(left: 15.h),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "How can you \nEarn Money on \nRecycling ",
+                        style: TextStyle(
+                            fontSize: 25.sp,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold),
+                      ),
+                      Container(
+                          alignment: Alignment.centerRight,
+                          margin: EdgeInsets.only(
+                            top: 10.h,
+                          ),
+                          child: Image.asset(
+                            "image/Recycle1.png",
+                            scale: 7,
+                          )),
+                    ],
+                  ),
+                ),
                 Container(
-                    alignment: Alignment.centerRight,
-                    margin: EdgeInsets.only(top: 50.h, right: 13.w),
-                    child: Image.asset(
-                      "image/Recycle1.png",
-                      scale: 7,
-                    )),
-                Positioned(
-                    top: 120.h,
-                    left: 35.w,
-                    child: Text(
-                      "How can you \nEarn Money on \nRecycling ",
-                      style: TextStyle(
-                          fontSize: 25.sp,
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold),
-                    )),
-                Positioned(
-                    top: 140.h,
-                    left: 35.w,
-                    child: Text(
-                      "",
-                      style: TextStyle(
-                          fontSize: 25.sp,
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold),
-                    )),
-                Center(
-                  child: Container(
-                    margin: EdgeInsets.only(top: 270.h),
-                    height: 70.h,
-                    width: 270.w,
-                    decoration: BoxDecoration(
-                        color: Colors.white.withOpacity(0.8),
-                        borderRadius: BorderRadius.circular(20.r)),
-                    child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Column(
+                  height: 70.h,
+                  width: 270.w,
+                  decoration: BoxDecoration(
+                      color: Colors.white.withOpacity(0.8),
+                      borderRadius: BorderRadius.circular(20.r)),
+                  child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.only(
+                              left: 15.h, top: 15.h, right: 20.h),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Container(
-                                margin: EdgeInsets.only(top: 20.h, right: 25.w),
-                                child: Text(
-                                  "Recycling",
-                                  style: TextStyle(
-                                      fontSize: 19.sp,
-                                      color: Colors.green,
-                                      fontWeight: FontWeight.bold),
-                                ),
+                              Text(
+                                "Recycling",
+                                style: TextStyle(
+                                    fontSize: 19.sp,
+                                    color: Colors.green,
+                                    fontWeight: FontWeight.bold),
                               ),
-                              Container(
-                                margin: EdgeInsets.only(left: 15.w, top: 5.h),
-                                child: Text(
-                                  "Yure waste Money",
-                                  style: TextStyle(
-                                    fontSize: 16.sp,
-                                    color: Colors.grey,
-                                  ),
+                              Text(
+                                "Yure waste Money",
+                                style: TextStyle(
+                                  fontSize: 16.sp,
+                                  color: Colors.grey,
                                 ),
                               ),
                             ],
                           ),
-                          Container(
-                            margin: EdgeInsets.only(right: 20.w),
-                            child: Text(
-                              "$money pkr",
-                              style: TextStyle(
-                                fontSize: 19.sp,
-                                color: Colors.black,
-                              ),
+                        ),
+                        Container(
+                          margin: EdgeInsets.only(right: 20.w),
+                          child: Text(
+                            "$money pkr",
+                            style: TextStyle(
+                              fontSize: 19.sp,
+                              color: Colors.black,
                             ),
-                          )
-                        ]),
-                  ),
-                )
-              ],
+                          ),
+                        )
+                      ]),
+                ),
+              ]),
             ),
             Container_custom(),
           ],

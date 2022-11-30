@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:green/Screen/Main_Page/front.dart';
 import 'package:green/Screen/Sign/sign_up.dart';
 import 'package:green/Screen/Update/UpdateProfile.dart';
 import 'Screen/splash_screen/splash_screen.dart';
@@ -24,7 +25,8 @@ class MyApp extends StatelessWidget {
             theme: ThemeData(
               primarySwatch: Colors.blue,
             ),
-            home: Splahscreen(),
+            // home: Splahscreen(),
+            home: front(),
             // home: imagesss(),
             // home: signup(),
             // home: UpdateProfile(),
